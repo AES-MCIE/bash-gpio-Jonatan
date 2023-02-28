@@ -3,7 +3,6 @@
 echo "Script ejecutandose"
 Ngpio=$1
 mod=$2
-on=$3
 gpio=/sys/class/gpio/gpio
 control=0
 function gpioUnexport
@@ -39,7 +38,7 @@ function gpioValue
 	fi
 }
 
-if [ $# != 3 ]; then
+if [ $# != 2 ]; then
 	echo "Error en el numero de argumentos"
 	echo "Ingresa ./gpio.sh 0 help 0 para mas informacion"
 	control=1
@@ -47,26 +46,27 @@ if [ $# != 3 ]; then
 fi
 
 if [[ $mod == "help" && $control==0 ]]; then
-	if [ $on == 0 ]; then	
+	if [ $Ngpio == 0 ]; then	
 		echo "--------------------------------------------------------------------------------"		
 		echo "Autor: Jonatan Ali Medina Molina"
 		echo "TecNM Campus Morelia"
 		echo "Maestria en Ciencias en Ing. Electronica"
 		echo "--------------------------------------------------------------------------------"
 		echo ""
-		echo "Se requieren de 3 argumentos a la entrada"
+		echo "Se requieren de 2 argumentos a la entrada"
 		echo "Los comandos son: "                                                                                                                                                       
-		echo "./gpio.sh x in 0          Coloca el pin x en modo input"                                                                                                           
-		echo "./gpio.sh x out 1			Coloca el pin x en modo output y en HIGH"
-		echo "./gpio.sh x out 0			Coloca el pin x en modo output y en LOW"
-		echo "./leds.sh x blink     Coloca el trigger en modo heartbeat del led indicado"                                                                                               
-		echo "./leds.sh x help 0     Ayuda con comandos"                                                                                                                                
+		echo "./gpio.sh x in          Coloca el pin x en modo input"                                                                                                           
+		echo "./gpio.sh x out			Coloca el pin x en modo output"
+		echo "./gpio.sh x on			Coloca el pin x en HIGH (Requiere que se haya colocado como OUTPUT previamente"
+		echo "./gpio.sh x off			Coloca el pin x en LOW (Requiere que se haya colocado como OUTPUT previamente"		
+		echo "./gpio.sh x read     Coloca el trigger en modo heartbeat del led indicado"                                                                                               
+		echo "./gpio.sh x help 0     Ayuda con comandos"                                                                                                                                
 		echo ""
 		echo "NOTA: En la x se indica el numero del pin a modificar."                                                                                                              
 		echo "En el caso del comando help, se puede colocar cualquier numero en la x, eso no influye en el comando"
-		echo ""
+		echo "Cuando se coloca un pin"
 		exit 0
 	else
-		echo "No se reconoce el comando, intenta con ./gpio.sh 0 help 0"
+		echo "No se reconoce el comando, intenta con ./gpio.sh 0 help"
 	fi
 fi
