@@ -43,13 +43,13 @@ function gpioValue
 		lectura=$(cat /sys/class/gpio/gpio$Ngpio/value)
 		echo "Lectura del Gpio No. $Ngpio = $lectura"
 	else 
-		echo "Comando no reconocido, ingrese ./gpio.sh 0 help 0 para mas informacion"
+		echo "Comando no reconocido, ingrese ./gpio.sh 0 help 0 para ver comandos disponibles"
 	fi
 }
 
 if [ $# != 3 ]; then
 	echo "Error en el numero de argumentos"
-	echo "Ingresa ./gpio.sh 0 help 0 para mas informacion"
+	echo "Ingresa ./gpio.sh 0 help 0 para ver comandos disponibles"
 	control=1
 	exit 2
 fi
@@ -57,7 +57,8 @@ fi
 if [[ $mod != "help" && $control==0 ]]; then
 	#Verificar que el pin sea correcto
 	for t in ${pines[@]}; do
-		if [ $Ngpio == ${pines[$i]} ]; then
+		#echo "$t"
+		if [[ $Ngpio == $t ]]; then
 			controlPines=1
 		fi
 	done
@@ -87,7 +88,7 @@ if [[ $mod != "help" && $control==0 ]]; then
 				exit 0
 			#El pin no es entrada
 			else
-				echo "El pin no ha sido asignado como entrada, cambiando a entrada"
+				e:cho "El pin no ha sido asignado como entrada, cambiando a entrada"
 				gpioDirection
 				echo "Pin $Ngpio cambiado a entrada"
 				gpioValue
@@ -95,11 +96,13 @@ if [[ $mod != "help" && $control==0 ]]; then
 			fi
 		#Comando no reconocido
 		else 
-			echo "No se reconoce el comando, ingrese ./gpio.sh 0 help 0 para mas informacion"
+			echo "No se reconoce el comando, ingrese ./gpio.sh 0 help 0 para ver comandos disponibles"
 			exit 2
 		fi
 	else
 		echo "No se encuentra el pin indicado, verifique que el numero ingresado sea el correcto"
+		echo "Los pines disponibles son: "
+		echo "${pines[@]}"
 		exit 2
 	fi
 fi
@@ -107,25 +110,25 @@ fi
 #Comando de ayuda 
 if [[ $mod == "help" && $control==0 ]]; then
 	if [[ $Ngpio == 0 && $on == 0 ]]; then	
-		echo "--------------------------------------------------------------------------------"		
+		echo "------------------------------------------------------------------------------------------------"		
 		echo "Autor: Jonatan Ali Medina Molina"
 		echo "TecNM Campus Morelia"
 		echo "Maestria en Ciencias en Ing. Electronica"
-		echo "--------------------------------------------------------------------------------"
+		echo "------------------------------------------------------------------------------------------------"
 		echo ""
 		echo "Se requieren de 2 argumentos a la entrada"
 		echo "Los comandos son: "                                                                                                                                                       
-		echo "./gpio.sh x in read         Coloca el pin x en modo input"                                                                                                           
-		echo "./gpio.sh x out on		Coloca el pin x en modo output"
-		echo "./gpio.sh x out off			Coloca el pin x en HIGH (Requiere que se haya colocado como OUTPUT previamente"
-		echo "./gpio.sh 0 help 0      Ayuda con comandos"                                                                                                                                
+		echo "./gpio.sh x in read			Coloca el pin x como entrada y regresa el valor de lectura"                                                                                                           
+		echo "./gpio.sh x out on			Coloca el pin x como salida y en bajo"
+		echo "./gpio.sh x out off			Coloca el pin x como salida y en alto"
+		echo "./gpio.sh 0 help 0			Comando de ayuda"                                                                                                                                
 		echo ""
 		echo "NOTA: En la x se indica el numero del pin a modificar."                                                                                                              
 		echo "Los pines validos son:"
 		echo "${pines[@]}"
 		exit 0
 	else
-		echo "No se reconoce el comando, intenta con ./gpio.sh 0 help 0"
+		echo "Comando no reconocido, intenta con ./gpio.sh 0 help 0 para ver comandos disponibles"
 	fi
 fi
 
