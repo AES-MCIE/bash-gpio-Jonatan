@@ -59,7 +59,7 @@ echo 1 >> /sys/class/gpio/gpio24/value
 
 # Control de GPIOs de BeagleBone Black
 Este script sirve para controlar los GPIOs, pudiendo cambiarlos a entrada o salida, y leyendo o escribiendo en un pin especifico. Lo anterior se realiza ejecutando el comando
-`./gpio.sh` y colocando como argumentos No. de pin, entrada/salida y encender/apagar/leer. 
+`./gpio.sh` y colocando como argumentos No. de pin, modo y accion. 
 
 **IMPORTANTE**
 
@@ -79,7 +79,7 @@ sudo chmod +x gpio.sh
 Todo lo anterior es considerando que se encuentra en la carpeta donde esta almacenado el archivo. 
 
 # Modo de uso
-Para cambiar un GPIO se debe ejecutar el comando `gpio.sh` y pasar tres argumentos: No. pin o `0`; `in`, `out`
+Para cambiar un GPIO se debe ejecutar el comando `gpio.sh` y pasar tres argumentos: No. pin o `0`; `in`, `out`, `dir`
 o `help`; y `on`, `off`, `read` o `0`.
 
 Entonces, ejecuanto el comando `./gpio.sh 60 out on` coloca el pin 60 como salida y en estado alto. 
@@ -104,6 +104,11 @@ Pin x como salida y en bajo.
 Pin x como entrada y lectura. 
 ```
 ./gpio.sh x in read
+```
+
+Saber si el pin x es entrada o salida. 
+```
+./gpio.sh x dir 0 
 ```
 
 **En la x se debe colocar el pin que se desea modificar, a continuacion se muestran los pines disponibles**

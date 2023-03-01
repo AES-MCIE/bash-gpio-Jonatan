@@ -88,12 +88,17 @@ if [[ $mod != "help" && $control==0 ]]; then
 				exit 0
 			#El pin no es entrada
 			else
-				e:cho "El pin no ha sido asignado como entrada, cambiando a entrada"
+				echo "El pin no ha sido asignado como entrada, cambiando a entrada"
 				gpioDirection
 				echo "Pin $Ngpio cambiado a entrada"
 				gpioValue
 				exit 0
 			fi
+		#Saber si el pin es in/out
+		elif [[ $mod == "dir" && $on == 0 ]]; then
+			dato=$(cat /sys/class/gpio/gpio$Ngpio/direction)
+			echo "El pin $Ngpio es: $dato"
+			exit 0
 		#Comando no reconocido
 		else 
 			echo "No se reconoce el comando, ingrese ./gpio.sh 0 help 0 para ver comandos disponibles"
@@ -121,7 +126,8 @@ if [[ $mod == "help" && $control==0 ]]; then
 		echo "./gpio.sh x in read			Coloca el pin x como entrada y regresa el valor de lectura"                                                                                                           
 		echo "./gpio.sh x out on			Coloca el pin x como salida y en bajo"
 		echo "./gpio.sh x out off			Coloca el pin x como salida y en alto"
-		echo "./gpio.sh 0 help 0			Comando de ayuda"                                                                                                                                
+		echo "./gpio.sh 0 help 0			Comando de ayuda"
+		echo "./gpio.sh x dir 0			Saber si el pin x es entrada o salida"		
 		echo ""
 		echo "NOTA: En la x se indica el numero del pin a modificar."                                                                                                              
 		echo "Los pines validos son:"
