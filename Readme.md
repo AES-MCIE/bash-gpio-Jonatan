@@ -62,6 +62,7 @@ Este script sirve para controlar los GPIOs, pudiendo cambiarlos a entrada o sali
 `./gpio.sh` y colocando como argumentos No. de pin, entrada/salida y encender/apagar/leer. 
 
 **IMPORTANTE**
+
 Para poder ejecutar el script se debe estar en la carpeta donde esta almacenado el archivo y este debe de tener
 permisos de ejecucion. 
 
@@ -77,7 +78,7 @@ sudo chmod +x gpio.sh
 ```
 Todo lo anterior es considerando que se encuentra en la carpeta donde esta almacenado el archivo. 
 
-#Modo de uso
+# Modo de uso
 Para cambiar un GPIO se debe ejecutar el comando `gpio.sh` y pasar tres argumentos: No. pin o `0`; `in`, `out`
 o `help`; y `on`, `off`, `read` o `0`.
 
@@ -106,6 +107,8 @@ Pin x como entrada y lectura.
 ```
 
 **En la x se debe colocar el pin que se desea modificar, a continuacion se muestran los pines disponibles**
-Pines:30 31 48 4 13 3 49 117 125 111 110 20 60 40 51 5 12 2 15 14 123 112 7 38 34 66 69 45 23 47 27 22 62 36
-32 86 87 10 9 8 78 76 74 72 70 39 35 67 68 44 26 46 65 63 37 33 61 88 89 11 81 80 79 77 75 73 71)
+
+**PINES DISPONIBLES**: 30, 31, 48, 4, 13, 3, 49, 117, 125, 111, 110, 20, 60, 40, 51, 5, 12, 2, 15, 14, 123, 112, 7, 38, 34, 66,
+69, 45, 23, 47, 27, 22, 62, 36, 32, 86, 87, 10, 9, 8, 78, 76, 74, 72, 70, 39, 35, 67, 68, 44, 26, 46, 65, 63, 37,
+33, 61, 88, 89, 11, 81, 80, 79, 77, 75, 73, 71.
  
