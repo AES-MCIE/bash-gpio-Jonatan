@@ -58,8 +58,7 @@ Este script sirve para cambiar, entre entrada y salida, a los GPIOs de una Beagl
 
 ## Consideraciones básicas
 
-En la imagen se muestran todos los pines de una BeagleBone Black, este script solamente sirve para controlar los que tienen `GPIO`, es importante que se asegure que esté visualizando la tarjeta en la misma 
-orienteción que en la imagen.
+En la imagen se muestran todos los pines de una BeagleBone Black, este script solamente sirve para controlar los que tienen la etiqueta `GPIO_x`, donde la `x` corresponde al número de pin que será utilizado en el script. 
 
 ![](./bbb.png)
 
@@ -121,4 +120,4 @@ Saber si el pin x es entrada o salida.
 33, 61, 88, 89, 11, 81, 80, 79, 77, 75, 73, 71.
 
 ### Nota
-**NO conectar entre sí dos GPIOs configurados como salida, ya que si uno se coloca en alto y el otro en bajo se va a provocar un corto circuito.
+**NO conectar entre sí dos GPIOs configurados como salida, ya que si uno se coloca en alto y el otro en bajo se va a provocar un corto circuito.**
