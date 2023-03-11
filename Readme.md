@@ -52,33 +52,36 @@ echo 1 >> /sys/class/gpio/gpio24/value
 
 # BeagleBone Black
 
-## Basic considerations
+# Control de GPIOs de BeagleBone Black
+Este script sirve para cambiar, entre entrada y salida, a los GPIOs de una BeagleBone Black; además de poder leer o escribir en el GPIO, según esté configurado. Lo anterior se realiza ejecutando el comando
+`./gpio.sh` y colocando como argumentos No. de pin, modo y acción. 
+
+## Consideraciones básicas
+
+En la imagen se muestran todos los pines de una BeagleBone Black, este script solamente sirve para controlar los que tienen `GPIO`, es importante que se asegure que esté visualizando la tarjeta en la misma 
+orienteción que en la imagen.
 
 ![](./bbb.png)
 
+# Antes de comenzar
 
-# Control de GPIOs de BeagleBone Black
-Este script sirve para controlar los GPIOs, pudiendo cambiarlos a entrada o salida, y leyendo o escribiendo en un pin especifico. Lo anterior se realiza ejecutando el comando
-`./gpio.sh` y colocando como argumentos No. de pin, modo y accion. 
+Para poder ejecutar el script se debe estar en la carpeta donde está almacenado el archivo y debe de tener
+permisos de ejecución. 
 
-**IMPORTANTE**
-
-Para poder ejecutar el script se debe estar en la carpeta donde esta almacenado el archivo y este debe de tener
-permisos de ejecucion. 
-
-Los permisos de ejecucion se pueden visualizar con el comando: 
+Los permisos de ejecución se pueden visualizar con el comando: 
 ```
 ls -l
 ```
 El archivo `gpio.sh` debe de tener los permisos `-rwxr-xr-x`.
-En caso de que no se visualice la `x`, que es el permiso de ejecucion, se le puede agregar con el siguiente
+En caso de que no se visualice la `x`, que es el permiso de ejecución, se le puede agregar con el siguiente
 comando: 
 ```
 sudo chmod +x gpio.sh
 ```
-Todo lo anterior es considerando que se encuentra en la carpeta donde esta almacenado el archivo. 
+Todo lo anterior es considerando que se encuentra en la carpeta donde está almacenado el archivo. 
 
 # Modo de uso
+
 Para cambiar un GPIO se debe ejecutar el comando `gpio.sh` y pasar tres argumentos: No. pin o `0`; `in`, `out`, `dir`
 o `help`; y `on`, `off`, `read` o `0`.
 
@@ -111,9 +114,11 @@ Saber si el pin x es entrada o salida.
 ./gpio.sh x dir 0 
 ```
 
-**En la x se debe colocar el pin que se desea modificar, a continuacion se muestran los pines disponibles**
+**En la x se debe colocar el pin que se desea modificar, a continuación se muestran los pines disponibles**
 
 **PINES DISPONIBLES**: 30, 31, 48, 4, 13, 3, 49, 117, 125, 111, 110, 20, 60, 40, 51, 5, 12, 2, 15, 14, 123, 112, 7, 38, 34, 66,
 69, 45, 23, 47, 27, 22, 62, 36, 32, 86, 87, 10, 9, 8, 78, 76, 74, 72, 70, 39, 35, 67, 68, 44, 26, 46, 65, 63, 37,
 33, 61, 88, 89, 11, 81, 80, 79, 77, 75, 73, 71.
- 
+
+### Nota
+**NO conectar entre sí dos GPIOs configurados como salida, ya que si uno se coloca en alto y el otro en bajo se va a provocar un corto circuito.
